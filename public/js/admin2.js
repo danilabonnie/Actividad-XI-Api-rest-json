@@ -22,7 +22,8 @@ document.querySelector('#agregando').style.display = 'none'
 // })
 
 //-----------------------------------------------------------------
-const endpoint = 'http://localhost:3000/productos'
+const endpoint = 'https://peluches-y-juguetes.onrender.com/productoss'
+//const endpoint = 'http://localhost:3000/productos'
 
 // Event listener para el botón "Añadir Producto"
 document.getElementById('agregar').addEventListener('click', function () {
@@ -193,22 +194,40 @@ const editar = (id) => {
     event.preventDefault ();
     //creo objeto con nuevos datos
     const nuevosDatos = {
-      id: formEditar.idEditar.value,
+      id: formEditar.id.value,
       titulo: formEditar.titulo.value,
       descripcion: formEditar.descripcion.value,
       precio: formEditar.precio.value
     }
 
-    // if (!formEditar.id || !formEditar.titulo || !formEditar.descripcion || !formEditar.precio) {
-    //   document.querySelector('#mensajeCompletar2').innerHTML = '*Complete todos los datos'
-    //   return
-    // }
-    // else {
-    //   document.querySelector('#mensajeCompletar2').innerHTML = ''
-    //   // return
-    // }
+    if (!nuevosDatos.id || !nuevosDatos.titulo || !nuevosDatos.descripcion || !nuevosDatos.precio) {
+      document.querySelector('#mensajeCompletar2').innerHTML = '*Complete todos los datos'
+      return
+    }
+    else {
+      document.querySelector('#mensajeCompletar2').innerHTML = ''
+      // return
+    }
 
     // //validacion de campos vacios igual anterior 
-    let nuevosDatosJson = JSON.stringify(newDatos)
+    let nuevosDatosJson = JSON.stringify(nuevosDatos)
     console.log(nuevosDatosJson)
+    const enviarNewDatos = async()=>{
+      try{
+        const enviarDatos = await fetch(endpoint+'/'+nuevosDatos.id,{
+          method: 'put',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: nuevosDatosJson
+        })
+        const respuesta= await enviarDatos.json()
+        console.log(respuesta)
+        mostrarMensaje(respuesta.mensaje)
+      }catch(error){
+        mostrarMensaje('error al verificar datos')
+      }
+      setTimeout(()=>{location.reload();}, 1000)
+    }
+    enviarNewDatos();
   }) 
