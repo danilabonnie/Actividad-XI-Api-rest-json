@@ -22,7 +22,7 @@ document.querySelector('#agregando').style.display = 'none'
 // })
 
 //-----------------------------------------------------------------
-const endpoint = 'https://peluches-y-juguetes.onrender.com/productoss'
+const endpoint = 'https://actividad-xi-api-rest-json.onrender.com/productoss'
 // const endpoint = 'http://localhost:3000/productos'
 
 // Event listener para el botón "Añadir Producto"

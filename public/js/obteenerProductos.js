@@ -1,4 +1,4 @@
-const respuesta = fetch('https://peluches-y-juguetes.onrender.com/productos')
+const respuesta = fetch('https://actividad-xi-api-rest-json.onrender.com/productos')
 // const respuesta = fetch('http://localhost:3000/productos')
 
 .then(respuesta => respuesta.json())
