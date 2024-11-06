@@ -23,7 +23,7 @@ document.querySelector('#agregando').style.display = 'none'
 
 //-----------------------------------------------------------------
 const endpoint = 'https://peluches-y-juguetes.onrender.com/productoss'
-//const endpoint = 'http://localhost:3000/productos'
+// const endpoint = 'http://localhost:3000/productos'
 
 // Event listener para el botón "Añadir Producto"
 document.getElementById('agregar').addEventListener('click', function () {
@@ -56,6 +56,7 @@ formulario.addEventListener('submit', (event) => {
 
   if (!newDatos.titulo || !newDatos.descripcion || !newDatos.precio) {
     document.querySelector('#mensajeCompletar').innerHTML = '*Complete todos los datos'
+    document.querySelector('#mensajeCompletar').className += " bg-danger text-light";
     return
   }
   else {
@@ -96,6 +97,7 @@ formulario.addEventListener('submit', (event) => {
 mostrarMensaje=(mensaje)=>{
   console.log(mensaje)
   console.log(document.querySelector('#mensajeBack'))
+  document.querySelector('#mensajeBack').className += " bg-warning";
   document.querySelector('#mensajeBack').innerHTML = mensaje
 }
 
@@ -170,9 +172,9 @@ const formEditar = document.forms['formulario2']
 console.log(formEditar)
 const editar = (id) => {
   console.log (id)
-
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   //abro formulario de editar 
-  document.querySelector("#editando").style.display = 'block'
+  document.querySelector("#editarproducto").style.display = 'block'
   //contenedor de datos a editar
   let prodEditar = {}
   // recoorro los datos del json para ubicar el prod a editar
@@ -202,6 +204,7 @@ const editar = (id) => {
 
     if (!nuevosDatos.id || !nuevosDatos.titulo || !nuevosDatos.descripcion || !nuevosDatos.precio) {
       document.querySelector('#mensajeCompletar2').innerHTML = '*Complete todos los datos'
+      document.querySelector('#mensajeCompletar2').className += " bg-danger text-light";
       return
     }
     else {

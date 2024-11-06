@@ -1,5 +1,5 @@
 const respuesta = fetch('https://peluches-y-juguetes.onrender.com/productos')
-//const respuesta = fetch('http://localhost:3000/productos')
+// const respuesta = fetch('http://localhost:3000/productos')
 
 .then(respuesta => respuesta.json())
 .then(datos => mostrarProductos(datos));
